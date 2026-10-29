@@ -7,6 +7,31 @@
     xmlns:sys="clr-namespace:System;assembly=mscorlib"
     PanScroll="PanBack">
     <local:MyScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" x:Name="PanBack">
-        <TextBlock Text="为便于维护，开源内容中不包含百宝箱功能……" HorizontalAlignment="Center" FontSize="15" Height="30" VerticalAlignment="Center" />
+        <StackPanel Margin="25,25,25,10" Grid.IsSharedSizeScope="True">
+            <local:MyCard Margin="0,0,0,15" Title="内存优化">
+                <StackPanel Margin="25,40,25,20">
+                    <local:MyButton x:Name="BtnMemoryOptimize" MinWidth="160" Text="立即优化" Padding="13,0" HorizontalAlignment="Left" />
+                    <TextBlock x:Name="LabMemoryResult" Margin="0,12,0,0" FontSize="13" TextWrapping="Wrap" Foreground="{DynamicResource ColorBrush1}" />
+                </StackPanel>
+            </local:MyCard>
+            <local:MyCard Margin="0,0,0,15" Title="垃圾清理">
+                <StackPanel Margin="25,40,25,20">
+                    <local:MyButton x:Name="BtnRubbishClear" MinWidth="160" Text="清理 PCL 临时文件" Padding="13,0" HorizontalAlignment="Left" />
+                    <TextBlock x:Name="LabRubbishResult" Margin="0,12,0,0" FontSize="13" TextWrapping="Wrap" Foreground="{DynamicResource ColorBrush1}" />
+                </StackPanel>
+            </local:MyCard>
+            <local:MyCard Margin="0,0,0,15" Title="今日人品">
+                <StackPanel Margin="25,40,25,20">
+                    <local:MyButton x:Name="BtnJrrp" MinWidth="160" Text="算一下今日人品" Padding="13,0" HorizontalAlignment="Left" />
+                    <TextBlock x:Name="LabJrrpResult" Margin="0,12,0,0" FontSize="15" TextWrapping="Wrap" Foreground="{DynamicResource ColorBrush1}" />
+                </StackPanel>
+            </local:MyCard>
+            <local:MyCard Margin="0,0,0,15" Title="回声洞">
+                <StackPanel Margin="25,40,25,20">
+                    <local:MyButton x:Name="BtnRandomCave" MinWidth="160" Text="随机换一条" Padding="13,0" HorizontalAlignment="Left" />
+                    <TextBlock x:Name="LabCaveResult" Margin="0,12,0,0" FontSize="13" TextWrapping="Wrap" Foreground="{DynamicResource ColorBrush1}" />
+                </StackPanel>
+            </local:MyCard>
+        </StackPanel>
     </local:MyScrollViewer>
 </local:MyPageRight>

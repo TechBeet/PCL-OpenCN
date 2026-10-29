@@ -455,7 +455,7 @@ Public Class FormMain
             End Try
             '上报
             Telemetry("启动")
-            '开源版本提示（简化版本，无弹窗）
+            '开源构建不包含自动更新与联网通知功能，无需在此进行额外提示
         End Sub, "初始化", ThreadPriority.Lowest)
 
         Logger.Info($"第三阶段加载用时：{GetTimeMs() - ApplicationStartTick} ms")
