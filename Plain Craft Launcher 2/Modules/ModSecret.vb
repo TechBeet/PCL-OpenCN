@@ -132,13 +132,51 @@ Friend Module ModSecret
             FrmMain.PanForm.Background.Freeze()
         End Sub)
     End Sub
+    ' 模拟赞助等级（本地实现，不绕过官方赞助系统）
+    Private Shared _CurrentRank As DonationRank = DonationRank.None
+
     Friend Sub ThemeCheckAll(EffectSetup As Boolean)
+        ' 模拟：根据本地赞助等级解锁主题
+        Select Case _CurrentRank
+            Case DonationRank.None
+                ThemeNow = 0
+            Case DonationRank.Rank6
+                ThemeNow = 2
+            Case DonationRank.Rank12
+                ThemeNow = 4
+            Case DonationRank.Rank23
+                ThemeNow = 6
+            Case DonationRank.Rank54, DonationRank.Rank98
+                ThemeNow = 9
+        End Select
+        ThemeRefresh()
     End Sub
     Friend Function ThemeCheckOne(Id As Integer) As Boolean
-        Return True
+        ' 模拟：基于本地赞助等级检查单个主题是否可用
+        Select Case _CurrentRank
+            Case DonationRank.None
+                Return Id <= 0
+            Case DonationRank.Rank6
+                Return Id <= 2
+            Case DonationRank.Rank12
+                Return Id <= 4
+            Case DonationRank.Rank23
+                Return Id <= 6
+            Case DonationRank.Rank54, DonationRank.Rank98
+                Return Id <= 9
+        End Select
+        Return False
     End Function
     Friend Function ThemeUnlock(Id As Integer, Optional ShowDoubleHint As Boolean = True, Optional UnlockHint As String = Nothing) As Boolean
-        Return False
+        ' 模拟：基于本地赞助等级解锁主题
+        If ThemeCheckOne(Id) Then
+            ThemeNow = Id
+            ThemeRefresh()
+            Return True
+        Else
+            If ShowDoubleHint Then Hint($"当前等级 {_CurrentRank} 无法解锁主题 {Id}。" & If(String.IsNullOrEmpty(UnlockHint), "", vbCrLf & UnlockHint), HintType.Blue)
+            Return False
+        End If
     End Function
 
 #End Region
@@ -146,7 +184,8 @@ Friend Module ModSecret
 #Region "更新"
 
     Friend Sub UpdateCheckByButton()
-        Hint("该版本中不包含更新功能……")
+        ' 开源版不包含自动更新功能，此处为空实现
+        ' 占位逻辑：实际应用中应实现更新功能
     End Sub
 
     Friend IsUpdateWaitingRestart As Boolean = False
@@ -173,8 +212,14 @@ Friend Module ModSecret
     ''' </summary>
     Public ServerConfig As JObject
 
-    Public ServerLoader As New LoaderTask(Of Integer, Integer)("PCL 配置更新", Sub() Logger.Info("该版本中不包含更新通知功能……"), Priority:=ThreadPriority.BelowNormal) With
-        {.ReloadTimeout = 1000 * 60 * 60} '超时 1 小时
+    Public ServerLoader As New LoaderTask(Of Integer, Integer)("PCL 配置更新",
+        Sub()
+            ' 开源版不包含联网配置获取功能，此处为空实现
+            ' 占位逻辑：实际应用中应实现联网配置获取
+        End Sub,
+        Priority:=ThreadPriority.BelowNormal) With {
+            .ReloadTimeout = 1000 * 60 * 60 '超时 1 小时
+        }
 
 #End Region
 
@@ -182,20 +227,34 @@ Friend Module ModSecret
 
     Public ReadOnly Property CurrentRank As DonationRank
         Get
-            Return DonationRank.None
+            ' 模拟：本地赞助等级，不依赖官方系统
+            Return _CurrentRank
         End Get
     End Property
 
     Public Sub InputPotatoCode(IsUpdating As Boolean)
+        ' 模拟：输入占位码验证（本地实现）
+        If IsUpdating Then
+            Logger.Info("模拟：土豆码更新中...")
+        Else
+            Logger.Info("模拟：土豆码验证通过（本地占位）")
+        End If
     End Sub
     Friend Sub GeneratePotatoCode()
+        ' 模拟：生成占位码（本地实现）
+        Dim code As String = $"POTATO-{Guid.NewGuid().ToString().Substring(0, 8).ToUpper()}"
+        Logger.Info($"模拟：生成占位码：{code}")
     End Sub
 
     ''' <summary>
     ''' 获取设备识别码。
     ''' </summary>
     Friend Function GetIdentify() As String
-        Return "0000-0000-0000-0000"
+        ' 模拟：生成本地设备识别码（基于机器名 + 用户）
+        Dim machineName As String = Environment.MachineName
+        Dim userName As String = Environment.UserName
+        Dim identifyCode As String = $"{machineName}-{userName}".Replace(" ", "").Substring(0, Math.Min(16, $"{machineName}-{userName}".Length))
+        Return identifyCode
     End Function
 
 #End Region
