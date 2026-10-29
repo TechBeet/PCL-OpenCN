@@ -5,13 +5,21 @@
 [![哔哩哔哩](https://img.shields.io/badge/动态-BiliBili-00A4DB?style=flat&labelColor=444444&logoSize=auto)](https://space.bilibili.com/11343203/dynamic)
 [![爱发电](https://img.shields.io/badge/赞助-爱发电-946ce6?style=flat&labelColor=444444&logoSize=auto)](https://meloong.com/afd/a/LTCat)
 
-包含 PCL 的大部分源代码，包括 UI 库、动画模块、下载模块、Minecraft 启动模块等！<br/>
-代码并不是实时更新的，它会在每次 PCL 发布更新时同步一次。<br/>
+> 此仓库为官方仓库的**克隆版本**，通过最少[代码修改](https://github.com/TechBeet/PCL-OpenCN/commit/4f4a1b2edd11e0d5318de9c9ca46db7aa878aa3f)实现恢复中国区域下载功能。
+
+本项目包含 PCL 的大部分源代码，包括 UI 库、动画模块、下载模块、Minecraft 启动模块等。
+
+代码并不是实时更新的，它会在每次 PCL 发布更新时同步一次。
+
 非常感谢社区的大力支持！
 
-<br/>
+---
 
-### 相关资源
-- [PCL 下载](https://github.com/TechBeet/PCL/actions/runs/40157316905)：下载可免费使用的正式版 PCL！
-- [PCL 功能投票](https://github.com/Meloong-Git/PCL/discussions/2)：来参加投票吧，开发者会优先处理票数较高的项目！
-- [帮助文档库](https://github.com/LTCatt/PCL2Help)：PCL 内置帮助文档的存储库
+## 相关资源
+
+| 资源 | 说明 |
+| --- | --- |
+| [PCL 官方版本下载](https://meloong.com/pcl) | 下载可免费使用的正式版 PCL |
+| [PCL **修改**版本下载](https://github.com/TechBeet/PCL/actions/runs/40157316905) | 下载可免费使用无限制的正式版 PCL |
+| [PCL 官方渠道功能投票](https://github.com/Meloong-Git/PCL/discussions/2) | 参加投票，开发者会优先处理票数较高的项目 |
+| [官方渠道帮助文档库](https://github.com/LTCatt/PCL2Help) | PCL 内置帮助文档的存储库 |
