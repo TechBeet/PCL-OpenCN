@@ -133,7 +133,7 @@ Friend Module ModSecret
         End Sub)
     End Sub
     ' 模拟赞助等级（本地实现，不绕过官方赞助系统）
-    Private Shared _CurrentRank As DonationRank = DonationRank.None
+    Private _CurrentRank As DonationRank = DonationRank.None
 
     Friend Sub ThemeCheckAll(EffectSetup As Boolean)
         ' 模拟：根据本地赞助等级解锁主题
